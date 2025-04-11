@@ -1,0 +1,16 @@
+<!-- views/addProject.ejs -->
+<!DOCTYPE html>
+<html>
+<head><title>Add Project</title></head>
+<body>
+  <h2>Add New Project</h2>
+  <form method="POST" action="/api/projects" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title" required /><br />
+    <textarea name="description" placeholder="Description" required></textarea><br />
+    <input type="text" name="liveLink" placeholder="Live Link" required /><br />
+    <input type="text" name="githubLink" placeholder="GitHub Link" required /><br />
+    <input type="file" name="image" required /><br />
+    <button type="submit">Upload</button>
+  </form>
+</body>
+</html>
