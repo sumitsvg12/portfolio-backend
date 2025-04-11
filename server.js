@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
-const PORT = 5000;
+const PORT = process.env.PORT || 10000;
 const path = require("path");
 const cors = require('cors');
 
@@ -11,7 +11,8 @@ app.use(express.json());
 const submittedData = [];
 app.use(express.urlencoded());
 
-app.use(cors());
+
+app.use(cors({ origin: 'https://portfolio-frontend-x5em.onrender.com', credentials: true }));
 // const db=require("./config/db")4
 
 app.set("view engine","ejs");
@@ -29,5 +30,5 @@ app.get("/", (req, res) => {
 app.use("/api", require("./routes/projectRoutes"));
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
