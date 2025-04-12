@@ -12,7 +12,12 @@ const submittedData = [];
 app.use(express.urlencoded());
 
 
-app.use(cors({ origin: 'https://portfolio-frontend-x5em.onrender.com', credentials: true }));
+app.use(cors({
+  origin: [
+    "https://portfolio-frontend-x5em.onrender.com",
+    "http://localhost:3001",  // or 3001, depending on your setup
+  ]
+}));
 // const db=require("./config/db")4
 
 app.set("view engine","ejs");
