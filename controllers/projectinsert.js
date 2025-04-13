@@ -22,9 +22,9 @@ module.exports.insertProject = async (req, res) => {
     const backendUrl = process.env.BACKEND_URL || "http://localhost:10000";
     if (req.file) {
       const filename = req.file.filename;
-  req.body.image = `${backendUrl}/uploads/${filename}`;
+      req.body.image = `${backendUrl}/uploads/${filename}`;
   }
-  req.body.image = image;
+
     let userdata= await Project.create(req.body);
     if (userdata) {
       return res.status(200).json({ msg: "user record inserted successfull ", data: userdata });
