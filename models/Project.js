@@ -31,10 +31,11 @@ const projectSchema = new mongoose.Schema({
 
 const StorageImage=multer.diskStorage({
     destination:(req,file,cb)=>{
-        cb(null,path.join(__dirname,"..",Imagepath))
+        cb(null, "uploads/");
     },
     filename:(req,file,cb)=>{
-        cb(null,file.fieldname+"-"+Date.now());
+        const ext = path.extname(file.originalname); 
+    cb(null, "image-" + Date.now() + ext);
     }
 })
 
@@ -43,4 +44,8 @@ projectSchema.statics.imgpath=Imagepath;
 
 const Project = mongoose.model("Project", projectSchema);
 module.exports=Project;
+
+
+
+
 
