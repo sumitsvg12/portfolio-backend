@@ -25,6 +25,7 @@ app.set("views",path.join((__dirname,"views")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 
+
 mongoose.connect('mongodb+srv://sumitsvg9836:OCYibTjsM16AabZl@cluster0.8lhg9.mongodb.net/project')
   .then(() => console.log("DB is connected"))
   .catch((err) => console.log(err));

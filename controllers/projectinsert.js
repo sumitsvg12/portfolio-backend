@@ -19,8 +19,9 @@ module.exports.insertProject = async (req, res) => {
 
     // console.log(req.body);
     // console.log(req.file);
+    const backendUrl = process.env.BACKEND_URL || "http://localhost:10000";
     if (req.file) {
-      image = Project.imgpath + "/" + req.file.filename;
+      image = `${backendUrl}/uploads/${req.file.filename}`;
   }
   req.body.image = image;
     let userdata= await Project.create(req.body);
