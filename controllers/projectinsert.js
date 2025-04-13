@@ -19,7 +19,7 @@ module.exports.insertProject = async (req, res) => {
 
     // console.log(req.body);
     // console.log(req.file);
-    const backendUrl = process.env.BACKEND_URL || "http://localhost:10000";
+    const backendUrl = process.env.BACKEND_URL || "https://backend-portfolio-zgb9.onrender.com";
     if (req.file) {
       const filename = req.file.filename;
       req.body.image = `${backendUrl}/uploads/${filename}`;
