@@ -21,8 +21,7 @@ module.exports.insertProject = async (req, res) => {
     // console.log(req.file);
     const backendUrl = process.env.BACKEND_URL || "https://backend-portfolio-zgb9.onrender.com";
     if (req.file) {
-      const filename = req.file.filename;
-      req.body.image = `${backendUrl}/uploads/${filename}`;
+      req.body.image = req.file.path;
   }
 
     let userdata= await Project.create(req.body);
@@ -67,8 +66,7 @@ module.exports.updateProject = async (req, res) => {
     const projectId = req.params.id;
 
     if (req.file) {
-      const backendUrl = process.env.BACKEND_URL || "https://backend-portfolio-zgb9.onrender.com";
-      req.body.image = `${backendUrl}/uploads/${req.file.filename}`;
+      req.body.image = req.file.path
     }
 
     const updatedProject = await Project.findByIdAndUpdate(projectId, req.body, { new: true });
