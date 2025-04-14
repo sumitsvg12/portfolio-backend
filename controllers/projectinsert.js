@@ -47,3 +47,38 @@ module.exports.getProjects = async (req, res) => {
 module.exports.projectpage = async (req, res) => {
   res.render("projectpage");
 }
+
+// Show edit form with existing data
+module.exports.editProjectPage = async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).send("Project not found");
+    }
+    res.render("editProject", { project });
+  } catch (error) {
+    res.status(500).send("Error loading project");
+  }
+};
+
+// Handle project update
+module.exports.updateProject = async (req, res) => {
+  try {
+    const projectId = req.params.id;
+
+    if (req.file) {
+      const backendUrl = process.env.BACKEND_URL || "https://backend-portfolio-zgb9.onrender.com";
+      req.body.image = `${backendUrl}/uploads/${req.file.filename}`;
+    }
+
+    const updatedProject = await Project.findByIdAndUpdate(projectId, req.body, { new: true });
+
+    if (!updatedProject) {
+      return res.status(404).send("Project not found");
+    }
+
+    res.redirect("/projectpage"); // or wherever your admin panel is
+  } catch (error) {
+    res.status(500).send("Failed to update project");
+  }
+};

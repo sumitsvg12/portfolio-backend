@@ -12,7 +12,9 @@ router.get('/projectpage',contactcot.projectpage);
 router.post("/projects",Project.UploadImageFile,contactcot.insertProject);
 router.get("/projects", contactcot.getProjects);
 
+router.get("/editProjectPage/edit/:id", contactcot.editProjectPage);
 
+router.post("/updateProject/edit/:id", Project.UploadImageFile, contactcot.updateProject);
 
 
 module.exports=router;
