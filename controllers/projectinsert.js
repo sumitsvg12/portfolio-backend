@@ -1,7 +1,7 @@
 const path = require("path");
 const mongoose = require('mongoose');
 const contact = require("../models/contact");
-const Project = require("../models/Project");
+const { Project } = require("../models/Project");
 
 module.exports.insertcontact = async (req, res) => {
   let insertcontact = await contact.create(req.body)
@@ -22,9 +22,11 @@ module.exports.insertProject = async (req, res) => {
     const backendUrl = process.env.BACKEND_URL || "https://backend-portfolio-zgb9.onrender.com";
     if (req.file) {
       req.body.image = req.file.path;
+      console.log(req.file.path)
   }
-
+console.log(req.body)
     let userdata= await Project.create(req.body);
+    // console.log(userdata)
     if (userdata) {
       return res.status(200).json({ msg: "user record inserted successfull ", data: userdata });
     }
