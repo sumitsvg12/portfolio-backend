@@ -5,8 +5,7 @@ const path=require("path");
 const multer=require("multer");
 const Imagepath="/uploads";
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const cloudinary = require("./cloudinaryConfig");
-
+const cloudinary = require('../config/cloudinaryConfig');
 const projectSchema = new mongoose.Schema({
     title:{
         type:String,
